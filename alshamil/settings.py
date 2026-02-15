@@ -14,13 +14,6 @@ from pathlib import Path
 import os
 from decouple import config
 
-
-SECRET_KEY = config('DJANGO_SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-CONTACT_EMAIL = config('CONTACT_EMAIL')
-DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,11 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# Generate a new secret key for production!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-$=d87@h5f5^!i5fqjr-2lw7n%xa^9p3$usr14ju5o=h8-0w(f8')
+# This will be loaded from .env file (not committed to Git)
+SECRET_KEY = config('DJANGO_SECRET_KEY', default='django-insecure-TEMPORARY-KEY-CHANGE-THIS')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
     'alshamilturning.com',
@@ -147,15 +140,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Email Configuration
+# Email Configuration - All loaded from .env file (NOT committed to Git)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'alshamil.setup@gmail.com')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'gsyn tyyc crsq fsxg')
-CONTACT_EMAIL = os.environ.get('CONTACT_EMAIL', 'alshamil.setup@gmail.com')
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'info@alshamilturning.com')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+CONTACT_EMAIL = config('CONTACT_EMAIL', default='')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='')
 
 # Security Settings for Production
 if not DEBUG:
