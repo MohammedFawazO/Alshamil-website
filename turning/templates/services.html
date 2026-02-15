@@ -1,0 +1,294 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Services | Al Shamil Turning LLC{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/services.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="services-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content fade-in-up">
+        <h1>Our Services</h1>
+        <p>Specialized in Custom Machinery, Hydraulic Engineering & Industrial Fabrication</p>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section container">
+    <div class="section-header fade-in-up">
+        <h2>What We Offer</h2>
+        <div class="section-divider"></div>
+    </div>
+
+    <div class="services-grid">
+        <!-- Brush Kart Manufacturing -->
+        <div class="service-card fade-in-up delay-1">
+            <div class="service-icon">
+                <img src="{% static 'media/services/cleaning.png' %}" alt="Brush Kart Icon">
+            </div>
+            <h3>Brush Kart Manufacturing</h3>
+            <p>
+                We specialize in the design and manufacture of Brush Kart machines, developed based on specific 
+                operational needs and usage conditions. Our custom-engineered solutions deliver optimal performance 
+                for your unique requirements.
+            </p>
+        </div>
+
+        <!-- Hydraulic Systems -->
+        <div class="service-card fade-in-up delay-2">
+            <div class="service-icon">
+                <img src="{% static 'media/services/hydraulic.png' %}" alt="Hydraulic Systems Icon">
+            </div>
+            <h3>Hydraulic System Solutions</h3>
+            <p>
+                Complete hydraulic system design, manufacturing, and maintenance services. Our technical expertise 
+                allows us to create, modify, and service any type of hydraulic solution, regardless of complexity, 
+                ensuring reliability and efficiency.
+            </p>
+        </div>
+
+        <!-- Industrial Fabrication -->
+        <div class="service-card fade-in-up delay-3">
+            <div class="service-icon">
+                <img src="{% static 'media/services/welding.png' %}" alt="Fabrication Icon">
+            </div>
+            <h3>Industrial Fabrication & Welding</h3>
+            <p>
+                Comprehensive fabrication and servicing of all types of industrial machines. We provide professional 
+                light fabrication and welding works, delivering precision-engineered solutions for diverse industrial applications.
+            </p>
+        </div>
+
+        <!-- Machine Servicing -->
+        <div class="service-card fade-in-up delay-4">
+            <div class="service-icon">
+                <img src="{% static 'media/services/maintenance.png' %}" alt="Maintenance Icon">
+            </div>
+            <h3>Machine Servicing & Maintenance</h3>
+            <p>
+                Expert servicing and maintenance of all types of industrial machinery. Our skilled technicians ensure 
+                optimal performance, longevity, and reliability of your equipment with 24/7 emergency support available.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Video Gallery Section -->
+<section class="video-section container">
+    <div class="section-header fade-in-up">
+        <h2>See Our Services in Action</h2>
+        <div class="section-divider"></div>
+    </div>
+
+    <div class="video-grid">
+        <!-- Video 1: Brush Kart Manufacturing -->
+        <div class="video-card fade-in-up delay-1">
+            <div class="video-wrapper">
+                <video controls poster="{% static 'media/services/cleaning-thumb.jpg' %}">
+                    <source src="{% static 'media/services/videos/barnacle-cleaning.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-overlay">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+            </div>
+            <div class="video-info">
+                <h4>Brush Kart in Action</h4>
+                <p>Our custom-designed Brush Kart machines delivering efficient performance</p>
+            </div>
+        </div>
+
+        <!-- Video 2: Hydraulic Systems -->
+        <div class="video-card fade-in-up delay-2">
+            <div class="video-wrapper">
+                <video controls poster="{% static 'media/services/hydraulic-thumb.jpg' %}">
+                    <source src="{% static 'media/services/videos/hydraulic-systems.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-overlay">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+            </div>
+            <div class="video-info">
+                <h4>Hydraulic System Installation</h4>
+                <p>Watch our team install and commission a complete hydraulic system</p>
+            </div>
+        </div>
+
+        <!-- Video 3: Fabrication & Welding -->
+        <div class="video-card fade-in-up delay-3">
+            <div class="video-wrapper">
+                <video controls poster="{% static 'media/services/maintenance-thumb.png' %}">
+                    <source src="{% static 'media/services/videos/maintenance-work.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-overlay">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+            </div>
+            <div class="video-info">
+                <h4>Fabrication & Welding Work</h4>
+                <p>Professional fabrication and welding services for industrial applications</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-section">
+    <div class="container">
+        <div class="section-header fade-in-up">
+            <h2>Why Choose AL Shamil?</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item fade-in-up delay-1">
+                <div class="feature-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h4>Expert Team</h4>
+                <p>15 highly skilled professionals with over 20 years of industry experience</p>
+            </div>
+
+            <div class="feature-item fade-in-up delay-2">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h4>24/7 Availability</h4>
+                <p>Round-the-clock emergency assistance whenever you need it</p>
+            </div>
+
+            <div class="feature-item fade-in-up delay-3">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4>Quality Assured</h4>
+                <p>Rigorous quality control ensuring the highest standards in every project</p>
+            </div>
+
+            <div class="feature-item fade-in-up delay-1">
+                <div class="feature-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h4>Custom Solutions</h4>
+                <p>Tailored machinery and services designed precisely for your requirements</p>
+            </div>
+
+            <div class="feature-item fade-in-up delay-2">
+                <div class="feature-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h4>Trusted Partner</h4>
+                <p>Proven track record with 500+ satisfied clients since 2006</p>
+            </div>
+
+            <div class="feature-item fade-in-up delay-3">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h4>Technical Expertise</h4>
+                <p>Ability to create, modify, and service any hydraulic solution, regardless of complexity</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="process-section container">
+    <div class="section-header fade-in-up">
+        <h2>Our Work Process</h2>
+        <div class="section-divider"></div>
+    </div>
+
+    <div class="process-timeline">
+        <div class="process-step fade-in-up delay-1">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Consultation</h4>
+                <p>Initial discussion to understand your specific requirements and operational needs</p>
+            </div>
+        </div>
+
+        <div class="process-step fade-in-up delay-2">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Assessment</h4>
+                <p>Thorough evaluation and technical analysis of your equipment or project requirements</p>
+            </div>
+        </div>
+
+        <div class="process-step fade-in-up delay-3">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Design & Planning</h4>
+                <p>Custom engineering design with detailed project plan, timeline, and cost breakdown</p>
+            </div>
+        </div>
+
+        <div class="process-step fade-in-up delay-1">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>Execution</h4>
+                <p>Professional manufacturing, fabrication, or installation with continuous quality monitoring</p>
+            </div>
+        </div>
+
+        <div class="process-step fade-in-up delay-2">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h4>Follow-up</h4>
+                <p>Post-service support, maintenance, and 24/7 emergency assistance to ensure lasting results</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item fade-in-up delay-1">
+                <div class="stat-number" data-target="50" data-suffix="+">0</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+
+            <div class="stat-item fade-in-up delay-2">
+                <div class="stat-number" data-target="20" data-suffix="+">0</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+
+            <div class="stat-item fade-in-up delay-3">
+                <div class="stat-number" data-target="500" data-suffix="+">0</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+
+            <div class="stat-item fade-in-up delay-1">
+                <div class="stat-number" data-target="15" data-suffix="+">0</div>
+                <div class="stat-label">Skilled Professionals</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Call to Action -->
+    <section class="content-section cta-section">
+        <div class="container">
+            <div class="cta-content fade-in-up">
+                <h2>Need Our Expertise?</h2>
+                <p>Contact us today for custom machinery, hydraulic systems, or industrial fabrication solutions.</p>
+                <a href="{% url 'contact' %}" class="cta-button pulse">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/services.js' %}"></script>
+{% endblock %}

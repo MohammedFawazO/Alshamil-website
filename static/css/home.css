@@ -1,0 +1,593 @@
+/* ===============================
+   GLOBAL CONTAINERS
+=============================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===============================
+   HERO SECTION WITH KEN BURNS EFFECT
+=============================== */
+.hero-section {
+    position: relative;
+    height: 550px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Background image with Ken Burns animation */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../media/Index/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    animation: kenburns-top 8s ease-out infinite alternate;
+    z-index: 0;
+}
+
+/* Overlay animation */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(44, 62, 80, 0.3) 0%, rgba(44, 62, 80, 0.7) 100%);
+    z-index: 1;
+    pointer-events: none;
+    animation: pulseOverlay 4s ease-in-out infinite;
+}
+
+/* Overlay on scroll */
+.hero-section.scrolled .hero-overlay {
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 73, 94, 0.9) 100%);
+    animation: none;
+}
+
+/* Hero content */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+    animation: heroEnter 1.2s ease-out 0.3s forwards;
+}
+
+.hero-section.scrolled .hero-content {
+    transform: scale(0.95) translateY(-20px);
+    opacity: 0.9;
+    transition: all 0.6s ease;
+}
+
+.hero-content h1 {
+    font-size: 2rem;
+    line-height: 1.08;
+    font-weight: 700;
+    margin: 70px 0 10px;
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+    animation: textGlow 3s ease-in-out infinite;
+}
+
+/* CTA button */
+.hero-content .cta-button {
+    margin-top: 50px;
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #4A8ABA, #26B6CB);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out 0.8s, transform 1s ease-out 0.8s;
+}
+
+/* Fade in animation for CTA button initial appearance */
+.hero-content .cta-button.fade-in-complete {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    animation: bounce 2s infinite;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+}
+
+.scroll-indicator span {
+    display: block;
+    width: 30px;
+    height: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(74, 138, 186, 0.5);
+}
+
+.scroll-indicator span::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: scroll-down 2s infinite;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* ===============================
+   SECTION HEADERS
+=============================== */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.section-divider {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #4A8ABA, #26B6CB);
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* ===============================
+   ABOUT SECTION
+=============================== */
+.about-section {
+    background: white;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.text-link {
+    color: #4A8ABA;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.text-link:hover {
+    color: #26B6CB;
+    padding-left: 5px;
+}
+
+.about-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.about-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 30px 20px;
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover .image-overlay {
+    transform: translateY(0);
+}
+
+/* ===============================
+   SERVICES SECTION
+=============================== */
+.services-highlight {
+    background-image: url('../media/Index/services-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    padding: 80px 0;
+}
+
+.services-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(44, 62, 80, 0.9);
+}
+
+.services-highlight .container {
+    position: relative;
+    z-index: 2;
+}
+
+.services-highlight h2 {
+    color: white;
+}
+
+.service-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #4A8ABA, #26B6CB);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    transform: rotateY(360deg);
+}
+
+.service-icon img {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) invert(1);
+}
+
+.card-link {
+    color: #4A8ABA;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 15px;
+    transition: all 0.3s;
+}
+
+.card-link:hover {
+    padding-left: 10px;
+}
+
+/* ===============================
+   GALLERY SECTION
+=============================== */
+.gallery-section {
+    background: #f8f9fa;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: visible;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: 20px;
+    bottom: 20px;
+    background: #2c3e50;
+    border-radius: 10px;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+    background: white;
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, #26B6CB, #4A8ABA);
+    padding: 30px 20px;
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    border-radius: 10px;
+    z-index: 2;
+    opacity: 0;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ===============================
+   STATISTICS SECTION
+=============================== */
+.stats-section {
+    background-image: url('../media/Index/stats-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    border-radius: 18px;
+    position: relative;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(74, 138, 186, 0.85);
+    border-radius: 18px;
+}
+
+.stats-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: center;
+}
+
+.stat-item {
+    color: white;
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.stat-plus {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+/* ===============================
+   CTA SECTION
+=============================== */
+.cta-section {
+    background: transparent;
+    padding: 60px 20px;
+}
+
+.cta-content {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.cta-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* ===============================
+   ANIMATIONS
+=============================== */
+@keyframes kenburns-top {
+    0% {
+        transform: scale(1) translateY(0);
+        transform-origin: 50% 16%;
+    }
+    100% {
+        transform: scale(1.25) translateY(-15px);
+        transform-origin: top;
+    }
+}
+
+@keyframes heroEnter {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+    }
+    50% {
+        text-shadow: 3px 3px 25px rgba(74, 138, 186, 0.8);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseOverlay {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* NEW: Floating pulse animation for CTA button - combines vertical movement with scale */
+@keyframes floatingPulse {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 4px 15px rgba(74, 138, 186, 0.3);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 8px 25px rgba(74, 138, 186, 0.5);
+    }
+}
+
+/* Utility class for pulse animation - with higher specificity */
+.pulse-animation,
+.hero-content .cta-button.pulse-animation,
+.cta-content .cta-button.pulse-animation {
+    animation: floatingPulse 2.5s ease-in-out infinite !important;
+    opacity: 1 !important;
+}
+
+/* Ensure the animation continues even on hover */
+.cta-button.pulse-animation:hover,
+.hero-content .cta-button.pulse-animation:hover {
+    animation: floatingPulse 2.5s ease-in-out infinite !important;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-15px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+@keyframes scroll-down {
+    0%, 100% {
+        transform: translate(-50%, 0);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, 20px);
+        opacity: 1;
+    }
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+=============================== */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hero-content .cta-button {
+        margin-top: 60px;
+    }
+    
+    .about-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stat-number {
+        font-size: 3rem;
+    }
+}
