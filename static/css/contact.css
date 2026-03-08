@@ -1056,3 +1056,42 @@
         margin: 0 auto;
     }
 }
+/* ===============================
+   ENHANCED RESPONSIVE — ALL SCREENS
+=============================== */
+
+@media (max-width: 480px) {
+    .contact-hero {
+        min-height: 300px;
+        height: 40vh;
+    }
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    .contact-form-container,
+    .info-card,
+    .why-choose-card {
+        padding: 1.1rem;
+    }
+    .faq-item.active .faq-answer {
+        padding: 1rem 1.2rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+    .section-header h2 {
+        font-size: 1.4rem;
+    }
+    .contact-form-container {
+        padding: 0.9rem;
+    }
+}
