@@ -477,6 +477,7 @@
 /* ==================== TEAM SECTION ==================== */
 .team-section {
     padding: 80px 20px;
+    margin-bottom: 80px;
 }
 
 .team-section h2 {
@@ -501,101 +502,160 @@
 
 .team-grid {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    gap: 60px;
+    gap: 40px;
     flex-wrap: wrap;
     margin-top: 40px;
 }
 
-.team-member {
+/* ── Card wrapper ── */
+.team-member-wrapper {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    transition: ease-in-out 0.3s;
-    z-index: 2;
+    width: 280px;
+    height: 380px;
+    border-radius: 20px;
     cursor: pointer;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 8px 32px rgba(0, 31, 63, 0.18);
+    transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.team-member:hover .team-member__info {
-    transform: translateY(0);
-    opacity: 1;
+.team-member-wrapper:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 64px rgba(0, 31, 63, 0.28);
 }
-.team-member:before {
+
+/* ── Photo layer ── */
+.team-member {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center top;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 20px;
+}
+
+.team-member-wrapper:hover .team-member {
+    transform: scale(1.06);
+}
+
+/* ── Persistent subtle gradient at bottom ── */
+.team-member::after {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    background: inherit;
-    background-position: center;
-    filter: blur(40px) saturate(0%);
-    transform: scaleY(0.4);
-    transition: ease-in-out 0.4s;
-    border-radius: 120px;
-    transform-origin: bottom;
-    opacity: 0;
-    z-index: -1;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(
+        to bottom,
+        transparent 40%,
+        rgba(0, 15, 40, 0.45) 75%,
+        rgba(0, 15, 40, 0.75) 100%
+    );
+    opacity: 1;
+    transition: opacity 0.4s ease;
 }
+
+.team-member-wrapper:hover .team-member::after {
+    opacity: 0;
+}
+
+/* ── Hover overlay panel ── */
 .team-member__info {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    text-align: center;
-    line-height: 1.8;
-    transition: ease-in-out 0.3s;
+    padding: 28px 24px 26px;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 25, 60, 0.88) 0%,
+        rgba(0, 50, 100, 0.82) 100%
+    );
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-radius: 0 0 20px 20px;
+    border-top: 1px solid rgba(91, 192, 248, 0.25);
+    transform: translateY(100%);
     opacity: 0;
-    padding: 25px 20px;
-    background: rgba(0, 31, 63, 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: 0 0 15px 15px;
-    transform: translateY(20px);
+    transition:
+        transform 0.45s cubic-bezier(0.34, 1.2, 0.64, 1),
+        opacity 0.35s ease;
 }
 
+.team-member-wrapper:hover .team-member__info {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ── Accent line ── */
+.team-member__info::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background: linear-gradient(90deg, #4A8ABA, #26B6CB);
+    border-radius: 2px;
+    margin-bottom: 12px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease 0.15s;
+}
+
+.team-member-wrapper:hover .team-member__info::before {
+    transform: scaleX(1);
+}
+
+/* ── Name ── */
 .team-member__name {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 5px;
+    font-size: 1.15rem;
+    font-weight: 700;
     color: #ffffff;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    transform: translateY(8px);
+    opacity: 0;
+    transition: transform 0.4s ease 0.1s, opacity 0.4s ease 0.1s;
 }
 
+.team-member-wrapper:hover .team-member__name {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ── Designation ── */
 .team-member__designation {
-    font-size: 1rem;
-    color: #5bc0f8;
+    font-size: 0.85rem;
     font-weight: 500;
-    transition-delay: 0.15s;
+    color: #5bc0f8;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transform: translateY(8px);
+    opacity: 0;
+    transition: transform 0.4s ease 0.18s, opacity 0.4s ease 0.18s;
 }
 
-.team-member:hover {
-    border-radius: 15px;
-    width: 310px;
-    height: 450px;
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.04), 
-                0px 2px 6px rgba(9, 55, 53, 0.08), 
-                0px 16px 24px rgba(9, 55, 53, 0.1), 
-                0px 24px 32px rgba(9, 55, 53, 0.14);
+.team-member-wrapper:hover .team-member__designation {
+    transform: translateY(0);
+    opacity: 1;
 }
 
-.team-member:hover::before {
-    height: 100%;
-    opacity: 0.18;
-    filter: blur(10px) saturate(100%);
-    transform: scale(2.8) translate3d(0px, -18%, 0px);
+/* ── Subtle ring glow on hover ── */
+.team-member-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #4A8ABA, #26B6CB, transparent 60%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease;
 }
 
-/* ==================== CTA SECTION ==================== */
+.team-member-wrapper:hover::before {
+    opacity: 1;
+}
 
 .cta-section {
     background: transparent;
@@ -829,17 +889,13 @@
         font-size: 2rem;
     }
     .team-grid {
-        gap: 30px;
+        gap: 24px;
         flex-direction: column;
         align-items: center;
     }
-    .team-member {
-        width: 220px;
-        height: 220px;
-    }
-    .team-member:hover {
-        width: 280px;
-        height: 400px;
+    .team-member-wrapper {
+        width: 260px;
+        height: 340px;
     }
     .cta-content {
         padding: 40px 20px;
@@ -898,13 +954,9 @@
         width: 260px;
         height: 260px;
     }
-    .team-member {
-        width: 200px;
-        height: 200px;
-    }
-    .team-member:hover {
-        width: 260px;
-        height: 360px;
+    .team-member-wrapper {
+        width: 240px;
+        height: 310px;
     }
     .cta-content h2 {
         font-size: 1.4rem;
@@ -934,8 +986,8 @@
         width: 230px;
         height: 230px;
     }
-    .team-member {
-        width: 180px;
-        height: 180px;
+    .team-member-wrapper {
+        width: 220px;
+        height: 290px;
     }
 }

@@ -134,7 +134,7 @@ function enhanceImageLoading() {
 
 // ==================== HOVER EFFECTS FOR CARDS ====================
 function initCardEffects() {
-    const cards = document.querySelectorAll('.card, .service-card, .team-member');
+    const cards = document.querySelectorAll('.card, .service-card');
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function(e) {

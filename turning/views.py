@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, get_connection
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from .forms import ContactForm
 import json
 import logging
+import traceback
 
 logger = logging.getLogger(__name__)
 
@@ -101,10 +102,18 @@ Website: https://alshamilturning.com""",
                 })
                 
             except Exception as e:
-                logger.error(f"Error sending email: {str(e)}")
+                error_msg = str(e)
+                tb = traceback.format_exc()
+                logger.error(f"Error sending email: {error_msg}")
+                logger.error(f"Full traceback: {tb}")
+                # Also print to console for local debugging
+                print(f"EMAIL ERROR: {error_msg}")
+                print(f"TRACEBACK: {tb}")
+                # Return error details to client for debugging
                 return JsonResponse({
                     'success': False,
-                    'message': 'There was an error sending your message. Please try again or contact us directly.'
+                    'message': 'There was an error sending your message. Please try again or contact us directly.',
+                    'debug': error_msg
                 }, status=500)
         else:
             return JsonResponse({
@@ -131,3 +140,44 @@ def privacy(request):
 
 def terms(request):
     return render(request, 'terms_and_conditions.html')
+
+@csrf_exempt
+def test_email(request):
+    """Test SMTP connection and return detailed error info"""
+    try:
+        from django.core.mail import get_connection
+        
+        # Log settings being used
+        logger.info(f"Testing SMTP with EMAIL_HOST: {settings.EMAIL_HOST}")
+        logger.info(f"Testing SMTP with EMAIL_PORT: {settings.EMAIL_PORT}")
+        logger.info(f"Testing SMTP with EMAIL_HOST_USER: {settings.EMAIL_HOST_USER}")
+        logger.info(f"Testing SMTP with DEFAULT_FROM_EMAIL: {settings.DEFAULT_FROM_EMAIL}")
+        
+        # Try to open connection
+        connection = get_connection()
+        connection.open()
+        
+        # If successful, try sending a test email
+        test_email = EmailMessage(
+            subject='Test Email from Al Shamil Website',
+            body='This is a test email to verify SMTP is working.',
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[settings.CONTACT_EMAIL],
+        )
+        test_email.send()
+        
+        connection.close()
+        
+        return JsonResponse({
+            'success': True,
+            'message': 'SMTP connection successful! Test email sent.'
+        })
+        
+    except Exception as e:
+        logger.error(f"SMTP Test Failed: {str(e)}")
+        logger.error(f"Full traceback: {traceback.format_exc()}")
+        return JsonResponse({
+            'success': False,
+            'message': f'SMTP Test Failed: {str(e)}',
+            'traceback': traceback.format_exc()
+        }, status=500)

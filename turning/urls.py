@@ -8,4 +8,5 @@ urlpatterns= [
     path('privacy-policy/', v.privacy, name='privacy_policy'),
     path('terms-and-conditions/', v.terms, name='terms_and_conditions'),
     path('api/contact/', v.contact_submit, name='contact_submit'),
+    path('api/test-email/', v.test_email, name='test_email'),
 ]
