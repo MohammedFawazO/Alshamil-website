@@ -57,6 +57,7 @@ function animateCounter(element) {
     targetEl.classList.add('counted');
 
     const finalValue = Number(targetEl.dataset.target) || 0;
+    const displayValue = targetEl.dataset.display || finalValue;
     const suffix = targetEl.dataset.suffix || '';
     const providedDuration = Number(targetEl.dataset.duration) || 0;
 
@@ -81,7 +82,7 @@ function animateCounter(element) {
         if (progress < 1) {
             requestAnimationFrame(update);
         } else {
-            targetEl.textContent = finalValue + suffix;
+            targetEl.textContent = displayValue + suffix;
         }
     }
 

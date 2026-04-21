@@ -140,11 +140,12 @@ function animateCounter(element, target) {
         const duration = 2000;
         const stepTime = duration / 50;
         const suffix = element.getAttribute('data-suffix') || '';
+        const displayValue = element.getAttribute('data-display') || target;
         
         const timer = setInterval(() => {
             current += increment;
             if (current >= target) {
-                element.textContent = target + suffix;
+                element.textContent = displayValue + suffix;
                 clearInterval(timer);
             } else {
                 element.textContent = Math.floor(current) + suffix;

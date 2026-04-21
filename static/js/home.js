@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!numberElement) return;
         
         const target = parseInt(numberElement.getAttribute('data-count')) || 0;
+        const displayValue = numberElement.getAttribute('data-display') || target;
         const duration = 2000;
         const increment = target / (duration / 16);
         let current = 0;
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 numberElement.textContent = Math.floor(current);
                 requestAnimationFrame(updateCounter);
             } else {
-                numberElement.textContent = target;
+                numberElement.textContent = displayValue;
             }
         };
 

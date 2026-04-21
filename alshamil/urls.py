@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 from django.contrib.sitemaps.views import sitemap
 from turning.sitemaps import StaticViewSitemap
 
@@ -28,6 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('turning.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    path('favicon.ico', views.serve_favicon, {'filename': 'favicon.ico'}),
+    path('apple-touch-icon.png', views.serve_favicon, {'filename': 'apple-touch-icon.png'}),
 ]
 
 if settings.DEBUG:
