@@ -188,54 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
 });
 
-function createBackToTop() {
-    const backToTop = document.createElement('button');
-    backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    backToTop.className = 'back-to-top';
-    backToTop.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #4A8ABA, #26B6CB);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        z-index: 1000;
-        box-shadow: 0 4px 12px rgba(12, 22, 36, 0.3);
-        transition: all 0.3s ease;
-    `;
-    document.body.appendChild(backToTop);
 
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            backToTop.style.display = 'block';
-        } else {
-            backToTop.style.display = 'none';
-        }
-    });
-
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    backToTop.addEventListener('mouseenter', () => {
-        backToTop.style.transform = 'scale(1.1) translateY(-5px)';
-    });
-
-    backToTop.addEventListener('mouseleave', () => {
-        backToTop.style.transform = 'scale(1) translateY(0)';
-    });
-}
-
-// Initialize back to top button
-createBackToTop();
 // ==================== SCROLL ANIMATIONS ====================
 function initScrollAnimations() {
     const observerOptions = {
